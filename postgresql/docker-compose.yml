@@ -9,8 +9,8 @@ services:
      - 5432:5432
     hostname: postgres-host
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: customerdb
+      POSTGRES_PASSWORD: manage
       JAVA_MIN_MEM: 1g
       JAVA_MAX_MEM: 2g
     networks:

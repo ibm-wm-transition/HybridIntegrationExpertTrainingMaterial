@@ -1,0 +1,28 @@
+# ------------------------------------------------------------------------------
+# Docker compose for Expert Implementation training
+#  
+# >> docker-compose up -d
+#
+# Make sure you supply a valid license located in the same directory as this file)
+# ------------------------------------------------------------------------------
+version: "3.8"
+
+networks:
+  stack:
+
+services:
+  msr:
+    container_name: msr
+    image: hhansson/msr-infra
+    ports:
+      - 5555:5555
+    hostname: msr-host
+    environment:
+      JAVA_MIN_MEM: 1g
+      JAVA_MAX_MEM: 1g
+    volumes:
+      - ./license/license.xml:/opt/softwareag/IntegrationServer/config/licenseKey.xml:rw
+      - ./drivers/postgresql-42.4.0.jar:/opt/softwareag/IntegrationServer/packages/WmJDBCAdapter/code/jars/static/postgresql-42.4.0.jar:rw
+      - ./packages/ExpertImpl_SFsyncToOnPrem:/opt/softwareag/IntegrationServer/packages/ExpertImpl_SFsyncToOnPrem:rw
+    networks:
+      - stack
